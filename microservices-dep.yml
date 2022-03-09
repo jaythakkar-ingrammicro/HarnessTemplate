@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: microservicesaddressvalidate-deployment
+spec:
+  selector:
+    matchLabels:
+      app: microservicesaddressvalidate
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: microservicesaddressvalidate
+    spec:
+      containers:
+        - name: microservicesaddressvalidate
+          image: us-central1-docker.pkg.dev/im-b2b-sp-np-ops/im-b2b-microservices/addressvalidate:latest
+          ports:
+            - containerPort: 8089
+          volumeMounts:
+            - name: db-details
+              mountPath: "/tmp"
+      volumes:
+        - name: db-details
+          secret:
+            secretName: stage-db
