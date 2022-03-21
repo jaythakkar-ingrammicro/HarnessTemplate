@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: microservicesaddressvalidate
-          image: us-central1-docker.pkg.dev/im-b2b-sp-np-ops/im-b2b-microservices/addressvalidate:latest
+          image: <+artifact.image>
           ports:
             - containerPort: 8089
           volumeMounts:
